@@ -1,0 +1,148 @@
+body {
+    font-family: "微软雅黑", Helvetica, STHeiTi, sans-serif;
+    margin: 0 auto;
+    width: 16rem;
+}
+
+a, img {
+    -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */
+}
+html, body {
+    -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+    user-select: none;
+}
+.header{
+    width: 16.0rem;
+    height: 1.875rem;
+    background-color:#e6e6e6;
+    position: relative;
+}
+.header span{
+    line-height: 1.85rem;
+    height: 1.85rem;
+    width: 1.85rem;
+    margin:0.5rem;
+    color: #9a9a9a;
+}
+.header>span:nth-child(2){
+   color: red;
+   margin-left: 4.0rem;
+}
+.arrow{
+  display: block;
+  float: right;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
+  transform:rotate(180deg);
+  -ms-transform:rotate(180deg);   /* IE 9 */
+  -moz-transform:rotate(180deg);  /* Firefox */
+  -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+  -o-transform:rotate(180deg);  /* Opera */
+}
+.iconfont{
+  color: #acaead;
+}
+.arrow:hover{
+  transform:rotate(360deg);
+  -ms-transition-duration:2s;
+  -moz-transition-duration:2s;
+  -webkit-transition-duration:2s;
+  -o-transition-duration:2s;
+
+  -ms-transform:rotate(360deg);   /* IE 9 */
+  -moz-transform:rotate(360deg);  /* Firefox */
+  -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+  -o-transform:rotate(360deg);  /* Opera */
+}
+.tag{
+    width: 16.0rem;
+    margin: 0 auto;
+    height: 7.75rem;
+    text-align: center;
+    position: relative;
+}
+.tag ul {
+    margin-top: 1.0rem;
+    float: left;
+}
+.tag ul  li{
+    float: left;
+    width:3.8rem;
+    border-right: 0.025rem solid #d4d4d4;
+    margin-top:0.5rem;
+    margin-bottom: 0.5rem;
+
+}
+.tag ul li a{
+    float: left;
+    width:3.8rem;
+    font-size: 0.8rem;
+    color:black;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+}
+.tag ul li a:hover{
+    color: red;
+}
+#tag1{
+    border-right: none;
+}
+.slip1,.slip2{
+    width: 13.9rem;
+    height: 0.05rem;
+    background-color: #d4d4d4;
+    position: absolute;
+}
+.slip1{
+    top: 3.0rem;
+    left: 1.2rem;
+}
+.slip2{
+    top: 5.1rem;
+    left: 1.2rem;
+}
+
+
+.add-title{
+    line-height: 1.875rem;
+    margin-top: 1.0rem;
+    width: 15.5rem;
+    height: 1.875rem;
+    background-color:#e6e6e6;
+    position: relative;
+    padding-left: 0.5rem;
+    color:#9a9a9a;
+}
+.add ul{
+    width: 15.7rem;
+    height: auto;
+    margin-top: 0.8rem;
+    float: left;
+    margin-left: 0.3rem;
+}
+.add ul li{
+    display: block;
+    width: 3.0rem;
+    height: 1.8rem;
+    float: left;
+    margin-bottom: 0.5rem;
+    margin-left: 0.3rem;
+    border: 0.025rem solid #c8c8c8;
+    background-color:#f8f8f8;
+    color: #5a5a5a;
+    border-radius: 0.1rem;
+    padding: 0.2rem;
+}
+.add ul li a{
+    text-align: center;
+    line-height: 1.8rem;
+    font-size: 0.7rem;
+     width: 3.0rem;
+    height: 1.8rem;
+    float: left;
+    color: #595959;
+}
+.add ul li a:hover{
+    color: #c20111;
+}
+
