@@ -7,56 +7,76 @@
      <script src="https://redrock.cqupt.edu.cn/exam-mock/mock-min.js"></script>
     <script src="https://redrock.cqupt.edu.cn/exam-mock/mock-data.js"></script>
 </head>
-
+<div id="img-box"></div>
+<div id="focused"></div>
 <body>
-    <script type="text/javascript">
-  var ajax = function (conf) {
-    var method = conf.method;
-    var url = conf.url;
-    var data = conf.data;
-    var success = conf.success;
-    var dataType = conf.dataType;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-
-    if (method == 'GET' || method == 'get') {
-        xhr.send(null);
-    } else if (method == 'POST' || method == 'post') {
-        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-        xhr.send(data);
+<script type="text/javascript">
+function ajax (obj) {
+    var def = {
+        type    : 'GET',
+        url     : '',
+        data    : '',
+        async   : true,
+        success : function () {},
+        error   : function () {
+            console.log('error');
+        }
     }
 
+    for (var i in obj) {
+        def[i] = obj[i];
+    }
+
+    def.type = def.type.toUpperCase();
+
+    if (typeof def.data === 'object') {
+        var arr= [];
+        for (var key in def.data) {
+            arr.push(key + '=' + def.data[key]);
+        }
+        def.data = arr.join('&');
+    }
+
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.open(def.type, def.url, def.async);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            if(dataType == "text"||dataType=="TEXT") {
-                if (success != null) {
-                    //普通文本
-                    success(xhr.responseText);
-                }
-            } else if(dataType=="xml"||dataType=="XML") {
-                if (success != null) {
-                    //接收xml文档
-                    success(xhr.responseXML);
-                }
-            } else if(dataType=="json"||dataType=="JSON") {
-                if (success != null){
-                    //将json字符串转换为js对象
-                    success(eval("("+xhr.responseText+")"));
-                }
-            }
+            var data = JSON.parse(xhr.responseText);
+            def.success(data);
+        } else if (xhr.readyState == 4 && xhr.status !== 200) {
+            def.error();
         }
-    };
+    }
 
+    if (def.type === 'GET') {
+        xhr.send(null);
+    } else if (def.type === 'POST') {
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(def.data);
+    }
 }
 
 ajax({
-  url: "/tags",
-  method: "GET",
-  success: function(res) {
-  console.log(res);
-  }
-});
+        type: 'get',
+        url: '/sliders',
+        success: function (data) {
+            var imgBox = document.getElementById('img-box');
+            var focuse = document.getElementById('focused');
+            var s = '', focuseStr = '';
+            // console.log(data[0].imgURL);
+            for (var i = 0; i < data.length; i++) {
+                s += '<img src="' + data[i].imgURL + '" src="">';
+                if (i === 0) {
+                    focuseStr += '<div class="focused-item focused-active"></div>';
+                } else {
+                    focuseStr += '<div class="focused-item"></div>';
+                }
+            }
+            imgBox.innerHTML = s;
+            focuse.innerHTML = focuseStr;
+
+        }
+    })
 
     </script>
 </body>
