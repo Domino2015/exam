@@ -63,7 +63,21 @@ function ajax (obj) {
     }
 }
 
-
+var addEvent = (function () {
+    if ('addEventListener' in document) {
+        return function (ele, event, handle) {
+            ele.addEventListener(event, handle);
+        }
+    } else if ('attachEvent' in document) {
+        return function (ele, event, handle) {
+            ele.attachEvent('on' + event, handle);
+        }
+    } else {
+        return function (ele, event, handle) {
+            ele['on' + event] = handle;
+        }
+    }
+})()
 
 //标签获取
 ajax({
@@ -112,3 +126,70 @@ ajax({
     }
 })
 
+//刷新页面
+    function slideDownStep1(dist){
+        var slideDown1 = document.getElementById("slideDown1"),
+            slideDown2 = document.getElementById("slideDown2");
+        slideDown2.style.display = "none";
+        slideDown1.style.display = "block";
+        slideDown1.style.height = (parseInt("20px") - dist) + "px";
+    }
+    function slideDownStep2(){
+        var slideDown1 = document.getElementById("slideDown1"),
+            slideDown2 = document.getElementById("slideDown2");
+        slideDown1.style.display = "none";
+        slideDown1.style.height = "20px";
+        slideDown2.style.display = "block";
+        //刷新数据
+        //location.reload();
+    }
+    function slideDownStep3(){
+        var slideDown1 = document.getElementById("slideDown1"),
+            slideDown2 = document.getElementById("slideDown2");
+        slideDown1.style.display = "none";
+        slideDown2.style.display = "none";
+    }
+
+    k_touch("content","y");
+    function k_touch(contentId,way){
+        var _start = 0,
+            _end = 0,
+            _content = document.getElementById(contentId);
+        _content.addEventListener("touchstart",touchStart,false);
+        _content.addEventListener("touchmove",touchMove,false);
+        _content.addEventListener("touchend",touchEnd,false);
+        function touchStart(event){
+
+
+            var touch = event.targetTouches[0];
+            if(way == "x"){
+                _start = touch.pageX;
+            }else{
+                _start = touch.pageY;
+            }
+        }
+        function touchMove(event){
+            var touch = event.targetTouches[0];
+            if(way == "x"){
+                _end = (_start - touch.pageX);
+            }else{
+                _end = (_start - touch.pageY);
+
+                if(_end < 0){
+                    slideDownStep1(_end);
+                }
+            }
+
+        }
+        function touchEnd(event){
+            if(_end >0){
+
+            }else{
+                slideDownStep2();
+
+                setTimeout(function(){
+                    slideDownStep3();
+                },2500);
+            }
+        }
+    }

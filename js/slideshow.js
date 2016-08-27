@@ -1,3 +1,117 @@
+//轮播有问题不知道怎么
+/*var $ = function(id) {
+    return document.getElementById(id);
+}
+
+var btn = $('nav').getElementsByTagName('span');
+var index = 1;
+var haha = false; //判断动画是否在进行中
+
+function move(offset) {
+    haha = true;
+    var alltime = 1000;
+    var inteval = 10;
+    var speed = offset / (alltime / inteval);
+    var leftnumber = parseInt($('li').style.left) + offset;
+    var go = function() {
+        if ((speed > 0 && parseInt($('li').style.left) < leftnumber) || (speed < 0 && parseInt($('li').style.left) > leftnumber)) {
+            $('li').style.left = parseInt($('li').style.left) + speed + 'rem';
+            setTimeout(go, inteval);
+        } else {
+            if (parseInt($('li').style.left) < -48) {
+                $('li').style.left = -32 + 'rem';
+            }
+            if (parseInt($('li').style.left) > 0) {
+                $('li').style.left = -48 + 'rem';
+            }
+            $('li').style.left = index * -16 + 'rem';
+            haha = false;
+        }
+    }
+    go();
+}
+
+
+function next() {
+    // console.log(haha);
+    if (haha) {
+        return;
+    }
+
+    if (parseInt($('li').style.left) == -48) {
+        $('li').style.left = -32 + 'rem';
+    }
+    move(-16);
+    if (index == 5) {
+        index = 1;
+
+    } else {
+        index += 1;
+    }
+    showbtn();
+}
+
+function prev() {
+    // console.log(haha);
+    if (haha) {
+        return;
+    }
+    if (parseInt($('li').style.left) == 0) {
+        $('li').style.left = -48 + 'rem';
+    }
+    move(16);
+    if (index == 1) {
+        index = 5;
+    } else {
+        index -= 1;
+    }
+    showbtn();
+}
+
+
+
+function showbtn() {
+
+    for (var i = 0; i < btn.length; i++) {
+
+        if (btn[i].className == 'on') {
+            btn[i].className = '';
+        }
+        btn[i].onclick = function() {
+
+            var myIndex = parseInt(this.getAttribute('index'));
+            var nowleft = ((myIndex - index) * -16);
+            move(nowleft);
+            index = myIndex;
+            showbtn();
+        }
+
+    }
+    btn[index - 1].className = 'on';
+}
+
+showbtn();
+
+function play() {
+    timer = setTimeout(function() {
+        $('next').click();
+        play();
+    }, 3000);
+}
+
+function stop() {
+    clearTimeout(timer);
+}
+
+$('content').onmouseover = stop;
+$('content').onmouseout = play;
+play();
+
+$('next').addEventListener('click', next, false);
+$('prev').addEventListener('click', prev, false);
+
+*/
+
 var slideshow = document.getElementById('slideshow');
 var list = document.getElementById('list');
 var buttons = document.getElementById("buttons").getElementsByTagName('span');

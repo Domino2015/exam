@@ -44,13 +44,18 @@ ajax({
 var add =document.getElementById('add');
 var tag =document.getElementById('tag');
 var tagWord;
-
-
+add.addEventListener('click',getEvent,false);
  function getEvent(event){
             x= event.target;
-            var par=x.parentNode;
+            x.id='change';
             tagWord=x.innerHTML;
             var child=document.getElementById("change");
-            child.style.display='none'
+            child.parentNode.style.display='none';
             console.log(tagWord);
+            var node = document.createElement('a');
+            var textnode = document.createTextNode(tagWord);
+            node.appendChild(textnode);
+            var node2=document.createElement('li');
+            node2.appendChild(node);
+            document.getElementById("tag").appendChild(node2);
         }
